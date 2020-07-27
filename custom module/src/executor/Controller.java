@@ -25,26 +25,26 @@ public class Controller {
 
     public static void homeworkSolution() {
         opportunities();
-        String commandChoice;
+        String command;
         String name;
         String country;
         int age;
         double userId;
         Scanner scanner = new Scanner(System.in);
         do {
-            commandChoice = scanner.nextLine();
-            if (commandChoice.equals("add")) {
+            command = scanner.nextLine();
+            if (command.equals("add")) {
                 System.out.println("Write name ");
                 name = scanner.nextLine();
                 System.out.println("Write country");
                 country = scanner.nextLine();
                 System.out.println("Write age");
-                age = Integer.parseInt(scanner.nextLine());
+                age = scanner.nextInt();
                 Service.addUser(name, country, age);
                 Service.userList();
                 opportunities();
             }
-            if (commandChoice.equals("delete")) {
+            if (command.equals("delete")) {
                 System.out.println("Choose id of user to delete him");
                 Service.userList();
                 userId = Integer.parseInt(scanner.nextLine());
@@ -52,14 +52,14 @@ public class Controller {
                 Service.userList();
                 opportunities();
             }
-            if (commandChoice.equals("edit")) {
+            if (command.equals("edit")) {
                 System.out.println("Unable opportunity, choose other");
                 opportunities();
             }
-            if (commandChoice.equals("list")) {
+            if (command.equals("list")) {
                 Service.userList();
                 opportunities();
             }
-        } while (!commandChoice.equals("exit"));
+        } while (!command.equals("exit"));
     }
 }
