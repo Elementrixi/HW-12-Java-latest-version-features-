@@ -53,7 +53,6 @@ public class Controller {
                 opportunities();
             }
             if (commandChoice.equals("edit")) {
-                System.out.println("Unable opportunity, choose other");
                 Service.editUser();
                 opportunities();
             }
