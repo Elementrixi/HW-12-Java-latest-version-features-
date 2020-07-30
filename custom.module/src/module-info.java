@@ -1,3 +1,3 @@
-module module {
+module custom.module {
     exports executor;
 }

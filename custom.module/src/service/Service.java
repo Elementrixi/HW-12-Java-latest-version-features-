@@ -18,12 +18,10 @@ public class Service {
     }
 
     public static void editUser() {
-        userMap.get(userId);
-        userMap.get(userId);
-        userMap.get(userId);
     }
 
     public static void userList() {
         userMap.forEach((key, value) -> System.out.println(key + ", " + value));
     }
+
 }
