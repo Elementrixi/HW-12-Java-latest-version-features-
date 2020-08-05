@@ -38,10 +38,14 @@ public class Controller {
                 name = scanner.nextLine();
                 System.out.println("Write country");
                 country = scanner.nextLine();
-                System.out.println("Write age");
-                age = Integer.parseInt(scanner.nextLine());
-                Service.addUser(name, country, age);
-                Service.userList();
+                System.out.println("Write full age");
+                try {
+                    age = Integer.parseInt(scanner.nextLine());
+                    Service.addUser(name, country, age);
+                    Service.userList();
+                } catch (Exception e) {
+                    System.out.println("It's not number. Try another time");
+                }
                 opportunities();
             }
             if (commandChoice.equals("delete")) {

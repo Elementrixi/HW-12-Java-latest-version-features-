@@ -29,11 +29,15 @@ public class Service {
         System.out.println("Edited country: ");
         String country = scr.next();
 
-        System.out.println("Edited age: ");
-        int age = Integer.parseInt(scr.next());
-        Service.deleteUser(userId);
-        Service.addUser(name, country, age);
-        System.out.println("Account updated");
+        try {
+            System.out.println("Edited full age: ");
+            int age = Integer.parseInt(scr.next());
+            Service.deleteUser(userId);
+            Service.addUser(name, country, age);
+            System.out.println("Account updated");
+        } catch (Exception e) {
+            System.out.println("It's not number. Try another time");
+        }
     }
 
     public static void userList() {
