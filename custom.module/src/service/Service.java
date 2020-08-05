@@ -30,7 +30,7 @@ public class Service {
         String country = scr.next();
 
         try {
-            System.out.println("Edited full age: ");
+            System.out.println("Edited full age as number: ");
             int age = Integer.parseInt(scr.next());
             Service.deleteUser(userId);
             Service.addUser(name, country, age);

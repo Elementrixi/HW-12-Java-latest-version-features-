@@ -38,7 +38,7 @@ public class Controller {
                 name = scanner.nextLine();
                 System.out.println("Write country");
                 country = scanner.nextLine();
-                System.out.println("Write full age");
+                System.out.println("Write full age as number");
                 try {
                     age = Integer.parseInt(scanner.nextLine());
                     Service.addUser(name, country, age);
