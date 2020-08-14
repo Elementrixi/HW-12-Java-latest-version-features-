@@ -5,6 +5,6 @@ import executor.Controller;
 public class Main {
 
     public static void main(String[] args) {
-        Controller.homeworkSolution();
+        Controller.control();
     }
 }
