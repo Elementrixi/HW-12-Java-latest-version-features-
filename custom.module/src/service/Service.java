@@ -4,12 +4,16 @@ import user.User;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Service {
-    static Scanner scr = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
     private static Map<Integer, User> userMap = new HashMap<>();
     private static int userId = 1;
+    private String name;
+    private String country;
+    private int age;
 
     public static void addUser(String name, String country, int age) {
         userMap.put(userId++, new User(name, country, age));
@@ -20,23 +24,24 @@ public class Service {
     }
 
     public static void editUser() {
-        Service.userList();
+        User user;
+        userList();
         System.out.println("Enter id of user who you will edit");
-        int userId = scr.nextInt();
-        System.out.println("Edited name : ");
-        String name = scr.next();
-
-        System.out.println("Edited country: ");
-        String country = scr.next();
-
         try {
+            int userId = scanner.nextInt();
+            user = userMap.get(userId);
+            System.out.println("Edited name : ");
+            String name = scanner.next();
+            System.out.println("Edited country: ");
+            String country = scanner.next();
             System.out.println("Edited full age as number: ");
-            int age = Integer.parseInt(scr.next());
-            Service.deleteUser(userId);
-            Service.addUser(name, country, age);
+            int age = Integer.parseInt(scanner.next());
+            user.setName(name);
+            user.setCountry(country);
+            user.setAge(age);
             System.out.println("Account updated");
         } catch (Exception e) {
-            System.out.println("It's not number. Try another time");
+            System.out.println("Incorrect input");
         }
     }
 
@@ -44,4 +49,18 @@ public class Service {
         userMap.forEach((key, value) -> System.out.println(key + ", " + value));
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Service)) return false;
+        Service service = (Service) o;
+        return age == service.age &&
+                Objects.equals(name, service.name) &&
+                Objects.equals(country, service.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, country, age);
+    }
 }
