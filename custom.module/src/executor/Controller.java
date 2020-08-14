@@ -4,14 +4,23 @@ import service.Service;
 
 import java.util.Scanner;
 
-public class Controller {
+import static service.Service.addUser;
+import static service.Service.userList;
 
+public class Controller {
     static {
         Service service = new Service();
         service.addUser("Vasya", "German", 43);
         service.addUser("Katya", "Ukraine", 16);
         service.addUser("Tom", "England", 25);
         service.addUser("Den", "Denmark", 9);
+
+    }
+
+    public static void control() {
+        while (true) {
+            homeworkSolution();
+        }
     }
 
     public static void opportunities() {
@@ -31,39 +40,35 @@ public class Controller {
         int age;
         double userId;
         Scanner scanner = new Scanner(System.in);
-        do {
-            commandChoice = scanner.nextLine();
-            if (commandChoice.equals("add")) {
+        commandChoice = scanner.nextLine();
+        switch (commandChoice) {
+            case "add":
                 System.out.println("Write name ");
                 name = scanner.nextLine();
                 System.out.println("Write country");
                 country = scanner.nextLine();
-                System.out.println("Write full age as number");
+                System.out.println("Write full age");
                 try {
                     age = Integer.parseInt(scanner.nextLine());
-                    Service.addUser(name, country, age);
-                    Service.userList();
+                    addUser(name, country, age);
+                    userList();
                 } catch (Exception e) {
                     System.out.println("It's not number. Try another time");
                 }
-                opportunities();
-            }
-            if (commandChoice.equals("delete")) {
+                break;
+            case "delete":
                 System.out.println("Choose id of user to delete him");
-                Service.userList();
+                userList();
                 userId = Integer.parseInt(scanner.nextLine());
                 Service.deleteUser((int) userId);
-                Service.userList();
-                opportunities();
-            }
-            if (commandChoice.equals("edit")) {
+                userList();
+                break;
+            case "edit":
                 Service.editUser();
-                opportunities();
-            }
-            if (commandChoice.equals("list")) {
-                Service.userList();
-                opportunities();
-            }
-        } while (!commandChoice.equals("exit"));
+                break;
+            case "list":
+                userList();
+                break;
+        }
     }
 }
